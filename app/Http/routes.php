@@ -10,6 +10,8 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+//controller resfull
+Route::resource('movie', 'MovieController');
 
 Route::get('/', function () {
     return view('welcome');
