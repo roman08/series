@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use cinema\Http\Requests;
 use cinema\Http\Controllers\Controller;
 
-class MovieController extends Controller
+class UsuarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class MovieController extends Controller
      */
     public function index()
     {
-         return View('index');
+        //
     }
 
     /**
@@ -24,9 +24,9 @@ class MovieController extends Controller
      *
      * @return Response
      */
-    public function contacto()
+    public function create()
     {
-        return view('contacto');
+        //
     }
 
     /**
@@ -35,9 +35,9 @@ class MovieController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function review()
+    public function store(Request $request)
     {
-        return view('review');
+        //
     }
 
     /**
@@ -46,9 +46,9 @@ class MovieController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function admin()
+    public function show($id)
     {
-        return view('admin.index');
+        //
     }
 
     /**

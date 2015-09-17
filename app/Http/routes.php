@@ -12,6 +12,11 @@
 */
 //controller resfull
 Route::resource('movie', 'MovieController');
+Route::get('contacto','MovieController@contacto');
+Route::get('review','MovieController@review');
+Route::get('admin','MovieController@admin');
+
+Route::resource('usuario','UsuarioController');
 
 Route::get('/', function () {
     return view('welcome');
