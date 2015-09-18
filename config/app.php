@@ -144,6 +144,7 @@ return [
         cinema\Providers\AuthServiceProvider::class,
         cinema\Providers\EventServiceProvider::class,
         cinema\Providers\RouteServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
 
     ],
 
@@ -193,6 +194,8 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
+        'Form' => Collective\Html\FormFacade::class,
+      'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 

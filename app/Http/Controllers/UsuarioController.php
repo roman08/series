@@ -3,8 +3,12 @@
 namespace cinema\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use cinema\User;
 use cinema\Http\Requests;
+use cinema\Http\Requests\UserCreateRequest;
+use cinema\Http\Requests\UserUpdateRequest;
+use Session;
+use Redirect;
 use cinema\Http\Controllers\Controller;
 
 class UsuarioController extends Controller
@@ -16,7 +20,8 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        //
+        $users=User::paginate(2);
+        return view('usuario.index',compact('users'));
     }
 
     /**
@@ -26,7 +31,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        //
+        return view('usuario.create');
     }
 
     /**
@@ -35,9 +40,14 @@ class UsuarioController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(UserCreateRequest $request)
     {
-        //
+        \cinema\User::create([
+            'name'=>$request['name'],
+            'email'=>$request['email'],
+            'password'=>bcrypt($request['password'])
+            ]);
+        return redirect('/usuario')->with('message','store');
     }
 
     /**
@@ -59,7 +69,8 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('usuario.edit',['user'=>$user]);
     }
 
     /**
@@ -69,9 +80,13 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->fill($request->all());
+        $user->save();
+        Session::flash('message','Usuario Editado Correctamente');
+        return Redirect::to('/usuario');
     }
 
     /**
@@ -82,6 +97,9 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::destroy($id);
+        Session::flash('message','Usuario Eliminado Correctamente');
+        return Redirect::to('/usuario');
+
     }
 }
