@@ -20,6 +20,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
+        //onlyTrashed()-> para los eliminados en deletes
         $users=User::paginate(2);
         return view('usuario.index',compact('users'));
     }
@@ -97,7 +98,8 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-        User::destroy($id);
+       $user= User::find($id);
+       $user->delete();
         Session::flash('message','Usuario Eliminado Correctamente');
         return Redirect::to('/usuario');
 
